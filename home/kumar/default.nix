@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/home/apps.nix
+    ../../modules/home/appearance.nix
     ../../modules/home/cursor.nix
     ../../modules/home/programs.nix
     ../../modules/home/spicetify.nix
