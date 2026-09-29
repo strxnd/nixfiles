@@ -110,10 +110,10 @@ ShellRoot {
                 color: Colors.background
 
                 TextMetrics {
-                    id: archMetrics
+                    id: nixosMetrics
                     font.family: "Iosevka Nerd Font"
                     font.pixelSize: 16
-                    text: "󰣇"
+                    text: ""
                 }
 
                 TextMetrics {
@@ -132,7 +132,7 @@ ShellRoot {
                     spacing: 10
 
                     Text {
-                        text: "󰣇"
+                        text: ""
                         height: parent.height
                         verticalAlignment: Text.AlignVCenter
                         color: Colors.foreground
@@ -317,7 +317,7 @@ ShellRoot {
                         color: Colors.foreground
                         font.family: "Iosevka Nerd Font"
                         font.pixelSize: volumeMetrics.tightBoundingRect.height > 0
-                            ? Math.round(16 * archMetrics.tightBoundingRect.height / volumeMetrics.tightBoundingRect.height)
+                            ? Math.round(16 * nixosMetrics.tightBoundingRect.height / volumeMetrics.tightBoundingRect.height)
                             : 16
 
                         MouseArea {
