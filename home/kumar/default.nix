@@ -4,6 +4,7 @@
   imports = [
     ../../modules/home/apps.nix
     ../../modules/home/programs.nix
+    ../../modules/home/spicetify.nix
     ../../modules/home/shell.nix
     ../../modules/home/dotfiles.nix
   ];
