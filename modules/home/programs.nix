@@ -2,6 +2,11 @@
 
 {
   programs.pi-coding-agent.enable = true;
+  programs.gh.enable = true;
+  programs.btop.enable = true;
+  programs.imv.enable = true;
+  programs.mpv.enable = true;
+  programs.prismlauncher.enable = true;
   programs.git = {
     enable = true;
     settings.user = {

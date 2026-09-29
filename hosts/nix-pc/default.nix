@@ -10,6 +10,7 @@
     ../../modules/nixos/audio.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/packages.nix
+    ../../modules/nixos/onepassword.nix
     ../../modules/nixos/services.nix
     ../../modules/nixos/users.nix
   ];
