@@ -1,0 +1,50 @@
+-- This file needs to have same structure as nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
+-- Please read that file to know all available options :(
+
+---@type ChadrcConfig
+local M = {}
+
+M.base46 = {
+  theme = "kanagawa-dragon",
+  transparency = false,
+
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+    NvimTreeNormal = { bg = "darker_black" },
+    NvimTreeNormalNC = { bg = "darker_black" },
+  },
+}
+
+M.nvdash = { load_on_startup = true }
+
+M.ui = {
+  tabufline = {
+    enabled = false,
+  },
+  cmp = {
+    style = "atom_colored",
+  },
+  statusline = {
+    theme = "vscode_colored",
+  },
+}
+
+M.mason = {
+  pkgs = {
+    "biome",
+    "clangd",
+    "clang-format",
+    "codelldb",
+    "css-lsp",
+    "html-lsp",
+    "json-lsp",
+    "lua-language-server",
+    "stylua",
+    "tailwindcss-language-server",
+    "vtsls",
+  },
+}
+
+return M
