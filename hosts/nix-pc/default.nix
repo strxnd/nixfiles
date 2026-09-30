@@ -33,6 +33,7 @@ delib.host {
       graphics.enable = true;
       grub.enable = true;
       gtk.enable = true;
+      mouse.enable = true;
       nvidia.enable = true;
       qt.enable = true;
     };
