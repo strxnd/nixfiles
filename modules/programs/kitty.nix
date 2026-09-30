@@ -1,0 +1,48 @@
+{ delib, ... }:
+
+delib.module {
+  name = "programs.kitty";
+  options = delib.singleEnableOption true;
+
+  home.ifEnabled.programs.kitty = {
+    enable = true;
+    shellIntegration.mode = null;
+
+    settings = {
+      font_family = "Iosevka Nerd Font";
+      font_size = 14;
+      foreground = "#c5c9c5";
+      background = "#181616";
+      selection_foreground = "#c8c093";
+      selection_background = "#2d4f67";
+      cursor = "#c8c093";
+      cursor_text_color = "#181616";
+      color0 = "#0d0c0c";
+      color1 = "#c4746e";
+      color2 = "#8a9a7b";
+      color3 = "#c4b28a";
+      color4 = "#8ba4b0";
+      color5 = "#a292a3";
+      color6 = "#8ea4a2";
+      color7 = "#c8c093";
+      color8 = "#a6a69c";
+      color9 = "#e46876";
+      color10 = "#87a987";
+      color11 = "#e6c384";
+      color12 = "#7fb4ca";
+      color13 = "#938aa9";
+      color14 = "#7aa89f";
+      color15 = "#c5c9c5";
+      window_padding_width = 14;
+      confirm_os_window_close = 0;
+      cursor_shape = "block";
+      cursor_blink_interval = 0;
+      shell_integration = "no-cursor";
+    };
+
+    keybindings = {
+      "shift+enter" = "send_text all \\x1b[13;2u";
+      "alt+shift+enter" = "send_text all \\x1b[13;4u";
+    };
+  };
+}

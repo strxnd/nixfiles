@@ -1,6 +1,11 @@
-{ lib, runCommand, importNpmLock, nodejs }:
+{
+  lib,
+  runCommand,
+  importNpmLock,
+  nodejs,
+}:
 let
-  root = ../home/kumar/config/pi;
+  root = ../modules/programs/pi;
   extensionNames = [
     "ask-user"
     "background-terminals"
@@ -13,43 +18,52 @@ let
     "ui-customizations"
   ];
 
-  dependencies = path: let
-    manifest = lib.importJSON (path + "/package.json");
-    lock = lib.importJSON (path + "/package-lock.json");
-    package = builtins.removeAttrs manifest [ "devDependencies" ];
-    packageLock = lock // {
-      packages = (lib.filterAttrs (name: value:
-        name != "" && !(value.dev or false)
-      ) lock.packages) // { "" = package; };
-    };
-  in if (package.dependencies or { }) == { } then
-    runCommand "${package.name}-node-modules" { } "mkdir -p $out/node_modules"
-  else importNpmLock.buildNodeModules {
-    inherit package packageLock nodejs;
-    derivationArgs = {
-      npmFlags = "--omit=dev --legacy-peer-deps --ignore-scripts";
-      dontFixup = true;
-    };
-  };
+  dependencies =
+    path:
+    let
+      manifest = lib.importJSON (path + "/package.json");
+      lock = lib.importJSON (path + "/package-lock.json");
+      package = builtins.removeAttrs manifest [ "devDependencies" ];
+      packageLock = lock // {
+        packages = (lib.filterAttrs (name: value: name != "" && !(value.dev or false)) lock.packages) // {
+          "" = package;
+        };
+      };
+    in
+    if (package.dependencies or { }) == { } then
+      runCommand "${package.name}-node-modules" { } "mkdir -p $out/node_modules"
+    else
+      importNpmLock.buildNodeModules {
+        inherit package packageLock nodejs;
+        derivationArgs = {
+          npmFlags = "--omit=dev --legacy-peer-deps --ignore-scripts";
+          dontFixup = true;
+        };
+      };
 
   rootDependencies = dependencies root;
-  extensionDependencies = lib.genAttrs extensionNames
-    (name: dependencies (root + "/extensions/${name}"));
+  extensionDependencies = lib.genAttrs extensionNames (
+    name: dependencies (root + "/extensions/${name}")
+  );
 
   source = lib.fileset.toSource {
-    root = root;
+    inherit root;
     fileset = lib.fileset.unions [
       (root + "/AGENTS.md")
       (root + "/package.json")
       (lib.fileset.difference
-        (lib.fileset.fileFilter (file:
+        (lib.fileset.fileFilter (
+          file:
           !(lib.hasSuffix ".test.ts" file.name)
           && !(lib.hasSuffix ".spec.ts" file.name)
           && (lib.hasSuffix ".ts" file.name || lib.hasSuffix ".cjs" file.name)
         ) (root + "/extensions"))
-        (lib.fileset.unions (map (name:
-          lib.fileset.maybeMissing (root + "/extensions/${name}/node_modules")
-        ) extensionNames)))
+        (
+          lib.fileset.unions (
+            map (name: lib.fileset.maybeMissing (root + "/extensions/${name}/node_modules")) extensionNames
+          )
+        )
+      )
       (root + "/skills")
       (root + "/themes")
     ];
