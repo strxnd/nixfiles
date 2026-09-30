@@ -33,6 +33,10 @@ delib.module {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.theme.toolbar-theme" = 0;
         "browser.theme.content-theme" = 0;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.offlineApps" = false;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        "network.cookie.lifetimePolicy" = 0;
       };
 
       userChrome = ''
