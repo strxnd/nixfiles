@@ -6,6 +6,7 @@
     ../../modules/home/appearance.nix
     ../../modules/home/cursor.nix
     ../../modules/home/programs.nix
+    ../../modules/home/pi.nix
     ../../modules/home/spicetify.nix
     ../../modules/home/shell.nix
     ../../modules/home/dotfiles.nix

@@ -1,7 +1,6 @@
 { ... }:
 
 {
-  programs.pi-coding-agent.enable = true;
   programs.gh.enable = true;
   programs.btop.enable = true;
   programs.imv.enable = true;

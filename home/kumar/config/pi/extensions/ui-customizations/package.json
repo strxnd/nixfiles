@@ -1,0 +1,14 @@
+{
+  "name": "ui-customizations",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit -p .",
+    "format": "prettier --write \"**/*.{ts,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,json}\"",
+    "test": "node --test --experimental-strip-types *.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
