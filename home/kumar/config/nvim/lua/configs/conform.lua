@@ -1,6 +1,7 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
+    nix = { "nixfmt" },
     c = { "clang-format" },
     css = { "biome" },
     javascript = { "biome" },

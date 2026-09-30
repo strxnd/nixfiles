@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.gh.enable = true;
@@ -18,6 +18,24 @@
   programs.neovim = {
     enable = true;
     sideloadInitLua = true;
+    extraPackages = with pkgs; [
+      gcc
+      gnumake
+      unzip
+      tree-sitter
+      ripgrep
+      fd
+      biome
+      clang-tools
+      lua-language-server
+      nil
+      nixfmt
+      stylua
+      tailwindcss-language-server
+      vscode-langservers-extracted
+      vtsls
+      vscode-extensions.vadimcn.vscode-lldb.adapter
+    ];
   };
   programs.nnn.enable = true;
   programs.fastfetch.enable = true;

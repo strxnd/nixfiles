@@ -6,6 +6,7 @@ vim.lsp.enable {
   "cssls",
   "html",
   "jsonls",
+  "nil_ls",
   "tailwindcss",
   "vtsls",
 }

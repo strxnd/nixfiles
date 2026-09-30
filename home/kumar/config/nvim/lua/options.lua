@@ -1,4 +1,6 @@
-require("nvchad.options")
+local path = vim.env.PATH
+require "nvchad.options"
+vim.env.PATH = path
 
 local o = vim.o
 
