@@ -1,8 +1,8 @@
-{ delib, ... }:
+{ delib, pkgs, ... }:
 
 delib.module {
   name = "programs.prismlauncher";
   options = delib.singleEnableOption false;
 
-  home.ifEnabled.programs.prismlauncher.enable = true;
+  home.ifEnabled.home.packages = [ pkgs.prismlauncher ];
 }
