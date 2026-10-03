@@ -34,12 +34,12 @@ delib.host {
         }
       ];
       brews = [
-        "1password-cli"
         "mole"
         "mas"
       ];
       casks = [
         "1password"
+        "1password-cli"
         "theboredteam/boring-notch/boring-notch"
         # Cloudflare's installer also provisions WARP's background service.
         "cloudflare-warp"
