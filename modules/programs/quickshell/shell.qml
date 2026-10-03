@@ -333,6 +333,32 @@ ShellRoot {
                         }
                     }
 
+                    Text {
+                        id: displayIcon
+                        height: parent.height
+                        verticalAlignment: Text.AlignVCenter
+                        text: Quickshell.screens.length > 1 ? "󰍺" : "󰍹"
+                        color: Colors.foreground
+                        font.family: "Iosevka Nerd Font"
+                        font.pixelSize: 16
+
+                        DisplayMenu {
+                            id: displayMenu
+                            panel: bar
+                            anchorItem: displayIcon
+                        }
+
+                        Connections {
+                            target: displayMenu
+                            function onVisibleChanged() { root.menuVisibilityChanged(displayMenu); }
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: root.toggleMenu(displayMenu)
+                        }
+                    }
                 }
 
                 PopupWindow {

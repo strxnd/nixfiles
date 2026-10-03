@@ -13,6 +13,17 @@ delib.module {
       fi
     '';
 
+    home.activation.initializeDisplays = {
+      after = [ "writeBoundary" ];
+      before = [ ];
+      data = ''
+        run mkdir -p "$HOME/.config/mango"
+        if [ ! -e "$HOME/.config/mango/displays.conf" ]; then
+          run bash -c 'printf "%s\n" "monitorrule=name:^DP-1$,scale:1.6" > "$HOME/.config/mango/displays.conf"'
+        fi
+      '';
+    };
+
     xdg.configFile."mango/wallpapers".source = ./wallpapers;
     xdg.configFile."mango/config.conf".text = ''
       tag_num=9
@@ -41,7 +52,7 @@ delib.module {
       allow_tearing=0
       xwayland_ignore_scale=1
 
-      monitorrule=name:^DP-1$,scale:1.6
+      source=~/.config/mango/displays.conf
 
       xkb_rules_layout=us
       repeat_delay=300
