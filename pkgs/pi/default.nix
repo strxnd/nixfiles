@@ -1,7 +1,6 @@
 {
   lib,
   buildNpmPackage,
-  importNpmLock,
   nodejs,
   makeWrapper,
 }:
@@ -16,10 +15,13 @@ buildNpmPackage {
     ];
   };
 
-  npmDeps = importNpmLock { npmRoot = ./.; };
-  npmConfigHook = importNpmLock.npmConfigHook;
+  npmDepsHash = "sha256-1EttFiClXtbpi8VCKEqsHqtSmnBNGu34XufRVGLbSjc=";
   npmFlags = [ "--ignore-scripts" ];
   dontNpmBuild = true;
+  # This manifest has no development dependencies to prune.
+  dontNpmPrune = true;
+  # Pi's embedded shrinkwrap requires npm to write to its offline cache.
+  makeCacheWritable = true;
 
   nativeBuildInputs = [ makeWrapper ];
   postInstall = ''

@@ -9,8 +9,8 @@ delib.module {
     shellIntegration.mode = null;
 
     settings = {
-      font_family = "Iosevka Nerd Font";
-      font_size = 14;
+      font_family = "Iosevka Nerd Font Mono";
+      font_size = 15;
       foreground = "#c5c9c5";
       background = "#181616";
       selection_foreground = "#c8c093";
@@ -35,6 +35,7 @@ delib.module {
       color15 = "#c5c9c5";
       window_padding_width = 14;
       confirm_os_window_close = 0;
+      hide_window_decorations = "titlebar-only";
       cursor_shape = "block";
       cursor_blink_interval = 0;
       shell_integration = "no-cursor";

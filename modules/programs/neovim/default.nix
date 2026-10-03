@@ -22,7 +22,7 @@ delib.module {
       enable = true;
       sideloadInitLua = true;
       extraPackages = with pkgs; [
-        gcc
+        stdenv.cc
         gnumake
         unzip
         tree-sitter
@@ -41,6 +41,4 @@ delib.module {
       ];
     };
   };
-
-  nixos.ifEnabled.environment.systemPackages = [ pkgs.neovim ];
 }

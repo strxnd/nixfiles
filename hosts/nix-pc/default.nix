@@ -45,26 +45,5 @@ delib.host {
     system.stateVersion = "26.05";
   };
 
-  home = {
-    home.stateVersion = "26.05";
-
-    imports = [
-      ({ lib, ... }: {
-        home.activation.migrateConfigDirectories =
-          lib.hm.dag.entryBetween [ "linkGeneration" ] [ "writeBoundary" ]
-            ''
-              for name in mango nvim oh-my-posh; do
-                path="$HOME/.config/$name"
-                if [ -L "$path" ]; then
-                  case "$(readlink "$path")" in
-                    "${builtins.storeDir}"/*-home-manager-files/.config/"$name")
-                      run rm -- "$path"
-                      ;;
-                  esac
-                fi
-              done
-            '';
-      })
-    ];
-  };
+  home.home.stateVersion = "26.05";
 }

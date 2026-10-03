@@ -8,6 +8,7 @@ delib.module {
 
   home.ifEnabled.programs.pi-coding-agent = {
     enable = true;
+    package = pkgs.callPackage ../../../pkgs/pi { };
     extraPackages = with pkgs; [
       nodejs
       git
@@ -20,7 +21,7 @@ delib.module {
       defaultModel = "gpt-6.1-sol";
       defaultThinkingLevel = "medium";
       theme = "kanagawa-dragon";
-      quietStartup = true;
+      quietStartup = "header";
       enableInstallTelemetry = false;
       packages = [ "${piSetup}" ];
     };
