@@ -9,7 +9,7 @@ delib.module {
   options = delib.singleEnableOption true;
 
   home.ifEnabled = {
-    home.packages = [ (pkgs.callPackage ../../pkgs/codex { }) ];
+    home.packages = [ pkgs.codex ];
 
     programs.npm = {
       enable = true;

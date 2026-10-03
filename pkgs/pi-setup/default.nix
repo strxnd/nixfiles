@@ -5,7 +5,7 @@
   nodejs,
 }:
 let
-  root = ../modules/programs/pi;
+  root = ../../modules/programs/pi;
   extensionNames = [
     "ask-user"
     "background-terminals"
@@ -18,33 +18,16 @@ let
     "ui-customizations"
   ];
 
-  dependencies =
-    path:
-    let
-      manifest = lib.importJSON (path + "/package.json");
-      lock = lib.importJSON (path + "/package-lock.json");
-      package = builtins.removeAttrs manifest [ "devDependencies" ];
-      packageLock = lock // {
-        packages = (lib.filterAttrs (name: value: name != "" && !(value.dev or false)) lock.packages) // {
-          "" = package;
-        };
+  nodeModules =
+    name:
+    importNpmLock.buildNodeModules {
+      npmRoot = ./deps/${name};
+      inherit nodejs;
+      derivationArgs = {
+        npmFlags = "--ignore-scripts --legacy-peer-deps";
+        dontFixup = true;
       };
-    in
-    if (package.dependencies or { }) == { } then
-      runCommand "${package.name}-node-modules" { } "mkdir -p $out/node_modules"
-    else
-      importNpmLock.buildNodeModules {
-        inherit package packageLock nodejs;
-        derivationArgs = {
-          npmFlags = "--omit=dev --legacy-peer-deps --ignore-scripts";
-          dontFixup = true;
-        };
-      };
-
-  rootDependencies = dependencies root;
-  extensionDependencies = lib.genAttrs extensionNames (
-    name: dependencies (root + "/extensions/${name}")
-  );
+    };
 
   source = lib.fileset.toSource {
     inherit root;
@@ -73,8 +56,8 @@ runCommand "my-pi-setup" { } ''
   mkdir -p "$out"
   cp -r ${source}/. "$out/"
   chmod -R u+w "$out"
-  ln -s ${rootDependencies}/node_modules "$out/node_modules"
+  ln -s ${nodeModules "root"}/node_modules "$out/node_modules"
   ${lib.concatMapStringsSep "\n" (name: ''
-    ln -s ${extensionDependencies.${name}}/node_modules "$out/extensions/${name}/node_modules"
+    ln -s ${nodeModules name}/node_modules "$out/extensions/${name}/node_modules"
   '') extensionNames}
 ''

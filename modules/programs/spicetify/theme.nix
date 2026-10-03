@@ -11,7 +11,6 @@ delib.module {
     ({ config, ... }: {
       programs.spicetify = {
         theme = spicetifyPkgs.themes.text // {
-          # Spotify 1.3 split xpui.js; the theme's old layout patch no longer applies.
           patches = lib.optionalAttrs (lib.versionOlder config.programs.spicetify.spotifyPackage.version "1.3") spicetifyPkgs.themes.text.patches;
           additionalCss = ''
             :root {

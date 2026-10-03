@@ -15,7 +15,6 @@ delib.module {
 
     xdg.configFile."mango/wallpapers".source = ./wallpapers;
     xdg.configFile."mango/config.conf".text = ''
-      # Dwindle layout and appearance.
       tag_num=9
       tagrule=id:1,layout_name:dwindle
       tagrule=id:2,layout_name:dwindle
@@ -44,7 +43,6 @@ delib.module {
 
       monitorrule=name:^DP-1$,scale:1.6
 
-      # Input and cursor.
       xkb_rules_layout=us
       repeat_delay=300
       repeat_rate=50
@@ -56,11 +54,9 @@ delib.module {
       env=XCURSOR_THEME,Bibata-Original-Classic
       env=XCURSOR_SIZE,24
 
-      # Startup.
       exec-once=swaybg -i ~/.config/mango/wallpapers/2b88a.jpg -m fill
       exec-once=qs
 
-      # Keybindings and tags.
       bind=SUPER,Return,spawn,kitty
       bind=SUPER,space,spawn,qs ipc call launcher toggle
       bind=SUPER,Q,killclient

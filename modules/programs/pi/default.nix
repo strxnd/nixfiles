@@ -1,6 +1,6 @@
 { delib, pkgs, ... }:
 let
-  piSetup = pkgs.callPackage ../../../pkgs/pi-setup.nix { };
+  piSetup = pkgs.callPackage ../../../pkgs/pi-setup { };
 in
 delib.module {
   name = "programs.pi";
@@ -8,7 +8,7 @@ delib.module {
 
   home.ifEnabled.programs.pi-coding-agent = {
     enable = true;
-    package = pkgs.callPackage ../../../pkgs/pi { };
+    package = pkgs.pi-coding-agent;
     extraPackages = with pkgs; [
       nodejs
       git
