@@ -1,5 +1,5 @@
 {
-  description = "Kumar's NixOS and nix-darwin configuration with Denix";
+  description = "NixOS and nix-darwin configuration with Denix";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
