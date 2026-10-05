@@ -14,6 +14,7 @@ delib.host {
       onepassword.enable = true;
       prismlauncher.enable = true;
       quickshell.enable = true;
+      satty.enable = true;
       spicetify.enable = true;
       swaybg.enable = true;
       wl-clipboard.enable = true;

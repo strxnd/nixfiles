@@ -68,6 +68,8 @@ delib.module {
       exec-once=swaybg -i ~/.config/mango/wallpapers/2b88a.jpg -m fill
       exec-once=qs
 
+      bind=NONE,Print,spawn,screenshot region
+      bind=SHIFT,Print,spawn,screenshot full
       bind=SUPER,Return,spawn,kitty
       bind=SUPER,space,spawn,qs ipc call launcher toggle
       bind=SUPER,Q,killclient
