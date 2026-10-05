@@ -21,7 +21,7 @@ delib.module {
       defaultModel = "gpt-6.1-sol";
       defaultThinkingLevel = "medium";
       theme = "kanagawa-dragon";
-      quietStartup = "header";
+      tuiMode = "fullscreen";
       enableInstallTelemetry = false;
       packages = [ "${piSetup}" ];
     };
